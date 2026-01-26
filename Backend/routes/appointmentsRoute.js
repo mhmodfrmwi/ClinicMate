@@ -1,4 +1,5 @@
 const express = require("express");
+const { verifyToken, verifyAdmin } = require("../middlewares/verifyToken");
 const {
   GetAppointments,
   AddAppointment,
@@ -8,11 +9,14 @@ const {
 } = require("../controllers/appointmentsController");
 const route = express.Router();
 
-route.route("/appointments").get(GetAppointments).post(AddAppointment);
+route
+  .route("/appointments")
+  .get(verifyToken, GetAppointments)
+  .post(verifyToken, AddAppointment);
 route
   .route("/appointments/:id")
   .get(GetAppointmentById)
   .put(UpdateAppointment)
-  .delete(DeleteAppointment);
+  .delete(verifyAdmin, DeleteAppointment);
 
 module.exports = route;

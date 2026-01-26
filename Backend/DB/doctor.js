@@ -51,6 +51,11 @@ const doctorSchema = mongoose.Schema(
         message: "At least one availability day must be provided.",
       },
     },
+    clinicId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Clinic",
+      required: true,
+    },
   },
   {
     timestamps: true,

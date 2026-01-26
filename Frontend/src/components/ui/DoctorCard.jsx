@@ -1,6 +1,6 @@
 const DoctorCard = ({ image, isAvailable, name, apartment, experience }) => {
   return (
-    <div className="max-w-sm transform overflow-hidden rounded-lg bg-white shadow-xl transition-all hover:scale-105 hover:shadow-2xl">
+    <div className="glass group relative max-w-sm transform overflow-hidden rounded-xl bg-white/40 p-2 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/20">
       <div className="mx-auto h-48 w-48">
         <img
           src={image}

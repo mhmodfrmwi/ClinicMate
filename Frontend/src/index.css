@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -55,14 +57,17 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%
   }
-  
 }
+
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border transition-colors duration-300;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+  .glass {
+    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-lg dark:bg-slate-900/70 dark:border-white/10;
   }
 }
 @layer components {

@@ -12,7 +12,10 @@ const AddAppointment = asyncHandler(async (req, res) => {
   }
 
   const { doctorName, patientName, date, time, reason, status } = req.body;
-
+  const clinicId = req.body.clinicId || req.user?.clinicId;
+  if (!clinicId) {
+    return res.status(400).json({ message: "Clinic ID is missing" });
+  }
   const appointment = new Appointment({
     doctorName,
     patientName,
@@ -20,6 +23,9 @@ const AddAppointment = asyncHandler(async (req, res) => {
     time,
     reason,
     status,
+    status,
+    clinicId: clinicId,
+    userId: req.user?.id,
   });
 
   const savedAppointment = await appointment.save();
@@ -68,7 +74,16 @@ const DeleteAppointment = asyncHandler(async (req, res) => {
 });
 
 const GetAppointments = asyncHandler(async (req, res) => {
-  const appointments = await Appointment.find({});
+  let query = {};
+  if (req.user?.isAdmin) {
+    query = { clinicId: req.user.clinicId };
+  } else if (req.user?.id) {
+    query = { userId: req.user.id };
+  } else {
+    return res.status(403).json({ message: "Access denied" });
+  }
+
+  const appointments = await Appointment.find(query);
   res.status(200).json({
     message: "Appointments retrieved successfully.",
     appointments,

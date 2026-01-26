@@ -11,6 +11,11 @@ const userSchema = mongoose.Schema(
       minlength: 4,
       maxlength: 100,
     },
+    clinicId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Clinic",
+      required: true,
+    },
     email: {
       type: String,
       required: true,
@@ -61,6 +66,9 @@ const validateRegistration = (obj) => {
     userName: Joi.string().trim().min(4).max(100).required(),
     email: Joi.string().trim().min(6).max(100).required().email(),
     password: passwordComplexity().required(),
+    clinicName: Joi.string().min(3).required(),
+    address: Joi.string().required(),
+    phone: Joi.string().required(),
   });
   return schema.validate(obj);
 };

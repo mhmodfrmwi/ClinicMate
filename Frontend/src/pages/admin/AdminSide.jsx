@@ -31,21 +31,27 @@ const AdminSide = () => {
   ];
 
   return (
-    <div className="hidden min-h-screen w-0 bg-white text-gray-800 transition-all duration-500 ease-in-out lg:block lg:w-72">
+    <div className="glass hidden min-h-screen w-0 border-r border-white/20 text-gray-800 transition-all duration-500 ease-in-out dark:text-gray-200 lg:block lg:w-72">
       <div className="mt-6 space-y-4">
         {menuItems.map((item, idx) => {
           const isActive = location.pathname === item.link;
           return (
             <Link key={idx} to={item.link}>
               <div
-                className={`flex items-center gap-4 px-6 py-3 transition ${
-                  isActive ? "bg-gray-200" : "hover:bg-gray-200"
+                className={`mx-4 mb-2 flex items-center gap-4 rounded-xl px-4 py-3 transition-all duration-300 ${
+                  isActive
+                    ? "bg-blue-600 text-white shadow-lg shadow-blue-500/30"
+                    : "hover:bg-blue-50 dark:hover:bg-slate-800"
                 }`}
               >
-                <img src={item.icon} alt={item.label} className="h-6 w-6" />
+                <img
+                  src={item.icon}
+                  alt={item.label}
+                  className={`h-5 w-5 ${isActive ? "brightness-0 invert" : ""}`}
+                />
                 <h1
-                  className={`text-lg font-medium ${
-                    isActive ? "text-blue-600" : "text-gray-800"
+                  className={`text-md font-medium ${
+                    isActive ? "text-white" : "text-gray-700 dark:text-gray-300"
                   }`}
                 >
                   {item.label}

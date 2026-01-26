@@ -1,4 +1,5 @@
 const express = require("express");
+const { verifyAdmin } = require("../middlewares/verifyToken");
 const {
   AddDoctor,
   GetDoctors,
@@ -8,10 +9,10 @@ const {
 } = require("../controllers/doctorsControllers");
 const route = express.Router();
 
-route.route("/doctors").post(AddDoctor).get(GetDoctors);
+route.route("/doctors").post(verifyAdmin, AddDoctor).get(GetDoctors);
 route
   .route("/doctors/:id")
-  .put(UpdateDoctor)
-  .delete(DeleteDoctor)
+  .put(verifyAdmin, UpdateDoctor)
+  .delete(verifyAdmin, DeleteDoctor)
   .get(GetDoctorById);
 module.exports = route;

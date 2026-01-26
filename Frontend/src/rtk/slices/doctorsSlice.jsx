@@ -6,6 +6,9 @@ export const fetchDoctors = createAsyncThunk(
     const response = await fetch(
       "http://localhost:4000/api/rest/doctorsRoute/doctors",
     );
+    if (!response.ok) {
+       throw new Error("Failed to fetch doctors");
+    }
     const data = await response.json();
     return data.doctors;
   },

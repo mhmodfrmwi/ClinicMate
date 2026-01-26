@@ -3,8 +3,16 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchAppointments = createAsyncThunk(
   "appointments/fetchAppointments",
   async () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const token = user?.token;
+    
     const res = await fetch(
       "http://localhost:4000/api/rest/appointmentsRoute/appointments",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
     if (!res.ok) {
       throw new Error("Failed to fetch appointments");

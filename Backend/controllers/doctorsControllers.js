@@ -32,6 +32,7 @@ const AddDoctor = asyncHandler(async (req, res) => {
     phone,
     availability,
     image,
+    clinicId: req.user.clinicId,
   });
 
   const savedDoctor = await doctor.save();
@@ -80,7 +81,14 @@ const DeleteDoctor = asyncHandler(async (req, res) => {
 });
 
 const GetDoctors = asyncHandler(async (req, res) => {
-  const doctors = await Doctor.find({});
+  const clinicId = req.user?.clinicId || req.query.clinicId;
+  let doctors;
+  if (clinicId) {
+    doctors = await Doctor.find({ clinicId: clinicId });
+  } else {
+    doctors = await Doctor.find();
+  }
+  
   res.status(200).json({
     message: "Doctors retrieved successfully.",
     doctors,

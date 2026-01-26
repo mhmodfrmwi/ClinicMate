@@ -36,6 +36,21 @@ const appointmentSchema = mongoose.Schema(
       enum: ["Confirmed", "Pending", "Cancelled"],
       default: "Pending",
     },
+    doctorId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Doctor",
+      required: true,
+    },
+    clinicId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Clinic",
+      required: true,
+    },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: false,
+    },
   },
   {
     timestamps: true,
@@ -66,6 +81,7 @@ const validateUpdateAppointment = (obj) => {
     time: Joi.string(),
     reason: Joi.string().trim().min(5),
     status: Joi.string().valid("Confirmed", "Pending", "Cancelled"),
+    userId: Joi.string(),
   });
   return schema.validate(obj);
 };

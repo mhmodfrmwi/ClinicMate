@@ -60,21 +60,21 @@ const CreateAppointmentForm = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100 px-4">
-      <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
-        <h2 className="mb-6 text-2xl font-bold text-gray-800">
+    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4 dark:bg-slate-950">
+      <div className="glass w-full max-w-lg rounded-3xl bg-white/50 p-8 shadow-2xl dark:bg-slate-900/50">
+        <h2 className="mb-8 text-center text-3xl font-bold text-gray-800 dark:text-white">
           Create Appointment
         </h2>
         {error && (
-          <div className="mb-4 rounded bg-red-100 p-3 text-sm text-red-600">
+            <div className="mb-4 rounded-xl bg-red-100 p-3 text-sm text-red-600 dark:bg-red-900/30 dark:text-red-400">
             {error}
           </div>
         )}
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <div>
             <label
               htmlFor="doctorName"
-              className="block text-sm font-medium text-gray-700"
+              className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
             >
               Doctor Name
             </label>
@@ -83,7 +83,7 @@ const CreateAppointmentForm = () => {
               id="doctorName"
               value={formData.doctorName}
               onChange={handleChange}
-              className="mt-1 w-full rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="w-full rounded-xl border-gray-200 bg-white/50 px-4 py-3 placeholder:text-gray-400 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-slate-800/50 dark:text-white"
             >
               <option value="" disabled>
                 Select a doctor
@@ -96,10 +96,10 @@ const CreateAppointmentForm = () => {
             </select>
           </div>
 
-          <div className="mb-4">
+          <div>
             <label
               htmlFor="patientName"
-              className="block text-sm font-medium text-gray-700"
+              className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
             >
               Patient Name
             </label>
@@ -109,51 +109,53 @@ const CreateAppointmentForm = () => {
               id="patientName"
               value={formData.patientName}
               onChange={handleChange}
-              className="mt-1 w-full rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="w-full rounded-xl border-gray-200 bg-white/50 px-4 py-3 placeholder:text-gray-400 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-slate-800/50 dark:text-white"
               placeholder="Enter patient's name"
             />
           </div>
 
-          <div className="mb-4">
-            <label
-              htmlFor="date"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Appointment Date
-            </label>
-            <input
-              type="date"
-              name="date"
-              id="date"
-              value={formData.date}
-              onChange={handleChange}
-              className="mt-1 w-full rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-            />
+          <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label
+                  htmlFor="date"
+                  className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
+                >
+                  Date
+                </label>
+                <input
+                  type="date"
+                  name="date"
+                  id="date"
+                  value={formData.date}
+                  onChange={handleChange}
+                  className="w-full rounded-xl border-gray-200 bg-white/50 px-4 py-3 placeholder:text-gray-400 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-slate-800/50 dark:text-white"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="time"
+                  className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
+                >
+                  Time
+                </label>
+                <input
+                  type="time"
+                  name="time"
+                  id="time"
+                  value={formData.time}
+                  onChange={handleChange}
+                  className="w-full rounded-xl border-gray-200 bg-white/50 px-4 py-3 placeholder:text-gray-400 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-slate-800/50 dark:text-white"
+                />
+              </div>
           </div>
 
-          <div className="mb-4">
-            <label
-              htmlFor="time"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Appointment Time
-            </label>
-            <input
-              type="time"
-              name="time"
-              id="time"
-              value={formData.time}
-              onChange={handleChange}
-              className="mt-1 w-full rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-            />
-          </div>
-
-          <div className="mb-4">
+          <div>
             <label
               htmlFor="reason"
-              className="block text-sm font-medium text-gray-700"
+              className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
             >
-              Reason for Appointment
+              Reason
             </label>
             <input
               type="text"
@@ -161,24 +163,24 @@ const CreateAppointmentForm = () => {
               id="reason"
               value={formData.reason}
               onChange={handleChange}
-              className="mt-1 w-full rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-              placeholder="Enter reason for appointment"
+              className="w-full rounded-xl border-gray-200 bg-white/50 px-4 py-3 placeholder:text-gray-400 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-slate-800/50 dark:text-white"
+              placeholder="Brief reason for appointment"
             />
           </div>
 
-          <div className="mb-6">
+          <div>
             <label
               htmlFor="status"
-              className="block text-sm font-medium text-gray-700"
+              className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
             >
-              Appointment Status
+              Status
             </label>
             <select
               name="status"
               id="status"
               value={formData.status}
               onChange={handleChange}
-              className="mt-1 w-full rounded-lg border border-gray-300 px-4 py-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="w-full rounded-xl border-gray-200 bg-white/50 px-4 py-3 placeholder:text-gray-400 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 dark:bg-slate-800/50 dark:text-white"
             >
               <option value="Pending">Pending</option>
               <option value="Confirmed">Confirmed</option>
@@ -188,9 +190,9 @@ const CreateAppointmentForm = () => {
 
           <button
             type="submit"
-            className="w-full rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className="w-full rounded-xl bg-blue-600 py-3 text-lg font-bold text-white shadow-lg transition-transform hover:scale-[1.02] hover:bg-blue-700"
           >
-            Create Appointment
+            Confirm Booking
           </button>
         </form>
       </div>

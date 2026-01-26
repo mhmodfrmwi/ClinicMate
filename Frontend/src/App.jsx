@@ -15,6 +15,7 @@ import CreateAppointmentForm from "./components/ui/AppointmentForm";
 import { ToastContainer } from "react-toastify";
 import { useSelector } from "react-redux";
 import AllDoctorsList from "./pages/admin/AllDoctorsList";
+import PatientProfile from "./pages/PatientProfile";
 
 function App() {
   const user = useSelector((state) => state.users.user);
@@ -46,7 +47,9 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/allDoctors" element={<AllDoctors />} />
+        <Route path="/allDoctors" element={<AllDoctors />} />
         <Route path="/:doctorId" element={<DoctorDetails />} />
+        <Route path="/profile" element={<PatientProfile />} />
 
         <Route
           path="/admin"
