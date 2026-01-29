@@ -11,7 +11,7 @@
     "server": "json-server --watch data/students.json --port 5000"
   },
   "engines": {
-    "node": "16.x"
+    "node": "24.x"
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^6.7.1",
